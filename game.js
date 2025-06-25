@@ -22,30 +22,43 @@ const levels = [
     {
         id: 1,
         robot: { x: 1, y: 1 },
-        star: { x: 5, y: 4 },
+        star: { x: 3, y: 2 },
         obstacles: [],
-        maxCommands: 10,
+        maxCommands: 6,
         description: "Reach the star!"
     },
     {
         id: 2,
         robot: { x: 1, y: 1 },
-        star: { x: 8, y: 6 },
-        obstacles: [{ x: 5, y: 0 }, { x: 5, y: 1 }, { x: 5, y: 2 }, { x: 5, y: 3 }],
-        maxCommands: 15,
-        description: "Avoid the walls!"
+        star: { x: 4, y: 3 },
+        obstacles: [{ x: 3, y: 1 }],
+        maxCommands: 8,
+        description: "Go around the block!"
     },
     {
         id: 3,
         robot: { x: 0, y: 0 },
-        star: { x: 10, y: 7 },
+        star: { x: 5, y: 4 },
         obstacles: [
-            { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 },
-            { x: 7, y: 3 }, { x: 7, y: 4 }, { x: 7, y: 5 },
-            { x: 11, y: 0 }, { x: 11, y: 1 }, { x: 11, y: 2 }
+            { x: 2, y: 0 },
+            { x: 2, y: 2 },
+            { x: 4, y: 2 }
         ],
-        maxCommands: 20,
-        description: "Navigate the maze!"
+        maxCommands: 12,
+        description: "Navigate the blocks!"
+    },
+    {
+        id: 4,
+        robot: { x: 1, y: 1 },
+        star: { x: 6, y: 5 },
+        obstacles: [
+            { x: 3, y: 1 },
+            { x: 3, y: 2 },
+            { x: 5, y: 3 },
+            { x: 5, y: 4 }
+        ],
+        maxCommands: 15,
+        description: "Find the path!"
     }
 ];
 
@@ -315,35 +328,43 @@ clearBtn.addEventListener('click', () => {
     playSound('click');
 });
 
-document.addEventListener('keydown', (e) => {
-    if (isRunning) return;
+// Touch-friendly controls for iPad
+let touchStartX = null;
+let touchStartY = null;
+
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+});
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    if (!touchStartX || !touchStartY || isRunning) return;
     
-    const keyMap = {
-        'ArrowUp': 'up',
-        'ArrowDown': 'down',
-        'ArrowLeft': 'left',
-        'ArrowRight': 'right'
-    };
+    const touch = e.changedTouches[0];
+    const diffX = touch.clientX - touchStartX;
+    const diffY = touch.clientY - touchStartY;
     
-    const command = keyMap[e.key];
-    if (command) {
-        e.preventDefault();
-        if (e.shiftKey) {
-            addCommand(command);
-        } else {
-            const oldPos = { ...robot };
-            if (moveRobot(command)) {
-                playSound('move');
-                draw();
-                if (robot.x === star.x && robot.y === star.y) {
-                    celebrate().then(() => levelComplete());
-                }
-            } else {
-                playSound('bump');
-                shake();
-            }
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe
+        if (diffX > 30) {
+            addCommand('right');
+        } else if (diffX < -30) {
+            addCommand('left');
+        }
+    } else {
+        // Vertical swipe
+        if (diffY > 30) {
+            addCommand('down');
+        } else if (diffY < -30) {
+            addCommand('up');
         }
     }
+    
+    touchStartX = null;
+    touchStartY = null;
 });
 
 initLevel(currentLevel);
