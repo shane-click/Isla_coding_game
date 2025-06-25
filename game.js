@@ -22,43 +22,57 @@ const levels = [
     {
         id: 1,
         robot: { x: 1, y: 1 },
-        star: { x: 3, y: 2 },
+        star: { x: 5, y: 3 },
         obstacles: [],
-        maxCommands: 6,
+        maxCommands: 8,
         description: "Reach the star!"
     },
     {
         id: 2,
         robot: { x: 1, y: 1 },
-        star: { x: 4, y: 3 },
-        obstacles: [{ x: 3, y: 1 }],
-        maxCommands: 8,
-        description: "Go around the block!"
+        star: { x: 6, y: 4 },
+        obstacles: [{ x: 3, y: 1 }, { x: 3, y: 2 }],
+        maxCommands: 10,
+        description: "Go around the wall!"
     },
     {
         id: 3,
         robot: { x: 0, y: 0 },
-        star: { x: 5, y: 4 },
+        star: { x: 7, y: 5 },
         obstacles: [
-            { x: 2, y: 0 },
-            { x: 2, y: 2 },
-            { x: 4, y: 2 }
+            { x: 3, y: 0 },
+            { x: 3, y: 1 },
+            { x: 5, y: 3 },
+            { x: 5, y: 4 }
         ],
-        maxCommands: 12,
+        maxCommands: 14,
         description: "Navigate the blocks!"
     },
     {
         id: 4,
         robot: { x: 1, y: 1 },
-        star: { x: 6, y: 5 },
+        star: { x: 9, y: 6 },
         obstacles: [
-            { x: 3, y: 1 },
-            { x: 3, y: 2 },
-            { x: 5, y: 3 },
-            { x: 5, y: 4 }
+            { x: 4, y: 1 },
+            { x: 4, y: 2 },
+            { x: 4, y: 3 },
+            { x: 7, y: 4 },
+            { x: 7, y: 5 }
         ],
-        maxCommands: 15,
-        description: "Find the path!"
+        maxCommands: 16,
+        description: "Solve the maze!"
+    },
+    {
+        id: 5,
+        robot: { x: 0, y: 0 },
+        star: { x: 11, y: 8 },
+        obstacles: [
+            { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 },
+            { x: 6, y: 3 }, { x: 6, y: 4 }, { x: 6, y: 5 },
+            { x: 9, y: 0 }, { x: 9, y: 1 }, { x: 9, y: 6 }, { x: 9, y: 7 }
+        ],
+        maxCommands: 20,
+        description: "Master the challenge!"
     }
 ];
 
