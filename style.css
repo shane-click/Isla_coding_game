@@ -12,6 +12,13 @@ body {
     justify-content: center;
     align-items: center;
     color: #333;
+    -webkit-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    -webkit-touch-callout: none;
 }
 
 .game-container {
@@ -233,5 +240,16 @@ h1 {
     
     .available-commands {
         grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* PWA specific styles */
+@media (display-mode: standalone) {
+    .game-container {
+        height: 100vh;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 }
