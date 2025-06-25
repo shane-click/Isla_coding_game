@@ -22,7 +22,7 @@ const levels = [
     {
         id: 1,
         robot: { x: 1, y: 1 },
-        star: { x: 8, y: 5 },
+        star: { x: 5, y: 4 },
         obstacles: [],
         maxCommands: 10,
         description: "Reach the star!"
@@ -30,21 +30,21 @@ const levels = [
     {
         id: 2,
         robot: { x: 1, y: 1 },
-        star: { x: 10, y: 7 },
+        star: { x: 8, y: 6 },
         obstacles: [{ x: 5, y: 0 }, { x: 5, y: 1 }, { x: 5, y: 2 }, { x: 5, y: 3 }],
-        maxCommands: 12,
+        maxCommands: 15,
         description: "Avoid the walls!"
     },
     {
         id: 3,
         robot: { x: 0, y: 0 },
-        star: { x: 14, y: 9 },
+        star: { x: 10, y: 7 },
         obstacles: [
             { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 },
             { x: 7, y: 3 }, { x: 7, y: 4 }, { x: 7, y: 5 },
             { x: 11, y: 0 }, { x: 11, y: 1 }, { x: 11, y: 2 }
         ],
-        maxCommands: 15,
+        maxCommands: 20,
         description: "Navigate the maze!"
     }
 ];
