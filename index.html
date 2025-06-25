@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Adventure - Learn Programming!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>Isla's Code Adventure</h1>
+            <div class="level-info">
+                <span class="level">Level: <span id="currentLevel">1</span></span>
+                <span class="stars">Stars: <span id="stars">0</span></span>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            
+            <div class="command-area">
+                <h2>Program Your Robot!</h2>
+                <div class="command-slots" id="commandSlots">
+                    <!-- Command slots will be dynamically generated -->
+                </div>
+                <div class="available-commands">
+                    <button class="command-btn" data-command="up">↑ UP</button>
+                    <button class="command-btn" data-command="down">↓ DOWN</button>
+                    <button class="command-btn" data-command="left">← LEFT</button>
+                    <button class="command-btn" data-command="right">→ RIGHT</button>
+                </div>
+                <div class="control-buttons">
+                    <button id="runBtn" class="run-btn">▶ RUN</button>
+                    <button id="clearBtn" class="clear-btn">🗑 CLEAR</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <p>Help the robot reach the star! 🌟</p>
+            <p>Click the arrow buttons to add commands, then press RUN!</p>
+            <p>You can also use arrow keys to move directly!</p>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
